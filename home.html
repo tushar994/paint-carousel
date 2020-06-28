@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top "
+      style="background-color: black;"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid" id="image-slide" style="height: 100vh;"></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="brushstroke.js"></script>
+
+    <script>
+      const image_list = [
+        "https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/my-dream-place-tithi-luadthong.jpg",
+        "https://www.indiaart.com/Paintings/5008/Large/21802.jpg",
+        "https://i.imgur.com/67eMxJN.jpg"
+      ];
+      var n = image_list.length;
+      var okay = 1;
+      var cur_image = 0;
+
+      function changeImage() {
+        var div = document.getElementById("image-slide");
+        var width = div.clientWidth;
+        var height = div.clientHeight;
+        if (okay != 1) {
+          var options_init = {
+            inkAmount: 100,
+            size: 100,
+            frames: 30,
+            frameAnimation: true,
+            splashing: false,
+            image: image_list[cur_image],
+            centered: true,
+            queue: true,
+            width: width,
+            height: height,
+            root: div
+          };
+          bsBackground.erase(options_init);
+        } else {
+          okay = 2;
+        }
+        console.log("okay bruh");
+        cur_image = (cur_image + 1) % n;
+
+        var options = {
+          inkAmount: 30,
+          size: 100,
+          frames: 30,
+          frameAnimation: true,
+          splashing: false,
+          image: image_list[cur_image],
+          centered: true,
+          queue: true,
+          width: width,
+          height: height,
+          root: div
+        };
+        bsBackground = new Brushstroke(options);
+        bsBackground.draw();
+
+        // Draw another straight line
+        // bsBackground.draw();
+
+        // Draw a curve generated using 20 random points
+        // bsBackground.draw();
+      }
+      document.addEventListener("DOMContentLoaded", function() {
+        setInterval(changeImage, 2000);
+      });
+    </script>
+  </body>
+</html>

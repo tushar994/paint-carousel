@@ -1,0 +1,39 @@
+const image_list = [
+        "https://render.fineartamerica.com/images/images-profile-flow/400/images/artworkimages/mediumlarge/3/my-dream-place-tithi-luadthong.jpg",
+        "https://www.indiaart.com/Paintings/5008/Large/21802.jpg",
+        "https://i.imgur.com/67eMxJN.jpg"
+      ];
+      var n = image_list.length;
+      var cur_image = 0;
+      var div = document.getElementById("image-slide");
+
+      function changeImage() {
+        console.log("okay bruh");
+        cur_image = (cur_image + 1) % n;
+
+        var options = {
+          points: 10,
+          inkAmount: 5,
+          size: 300,
+          frames: 10,
+          frameAnimation: true,
+          splashing: false,
+          image: "https://www.indiaart.com/Paintings/5008/Large/21802.jpg",
+          centered: true,
+          queue: true,
+          width: width,
+          height: height
+        };
+
+        b = new Brushstroke(options);
+        b.erase();
+        b.draw();
+        setTimeout(changeImage, 5000);
+      }
+
+
+      <div
+      class="container-fluid"
+      id="image-slide"
+      style="background-color: black; height: 100vh;"
+    ></div>
